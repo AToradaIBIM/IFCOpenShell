@@ -1,3 +1,5 @@
+#Clase que se encarga de intermediar todos los métodos y pasarle a Datos las referencias desde Estructura
+
 import Estructura, Datos
 
 def loadFile(filePath):
@@ -57,5 +59,9 @@ def CalculateSurfaceOfAllWalls():
 def CalculateSurfaceOfAllDoors():
     return Datos.CalculateSurfaceOfAllDoors(Estructura.GetListBuildingElementsByType("IfcDoor"))
 
+#En desarrollo
 def CalculateSurfaceOfAllRoofs():
     return Datos.CalculateSurfaceOfAllRoofs(Estructura.GetListBuildingElementsByType("IfcRoof"))
+
+def ShowAtributesOfAnObject(object):
+    Datos.ShowAtributesOfAnObject(object)

@@ -1,5 +1,8 @@
+#Clase que se encarga de cálculos y propiedades específicas
+
 import math
 from ifcopenshell import geom
+import ifcopenshell.util.element
 settings = geom.settings()
 
 #Calcula la distancia entre dos vértices
@@ -69,20 +72,34 @@ def CalculateSurfaceOfAnObject(Object):
 
     return surface
 
+#Calculamos la superficie de todos los muros
 def CalculateSurfaceOfAllWalls(walls):
     surface = 0
     for wall in walls:
         surface += CalculateSurfaceOfAnObject(wall)
     return surface
 
+#Calculamos la superficie de todas las puertas
 def CalculateSurfaceOfAllDoors(doors):
     surface = 0
     for door in doors:
         surface += CalculateSurfaceOfAnObject(door)
     return surface
 
+#Calculamos la superficie de todos los tejados (En desarrollo)
 def CalculateSurfaceOfAllRoofs(roofs):
     surface = 0
     for roof in roofs:
         surface += CalculateSurfaceOfAnObject(roof)
     return surface
+
+#Mostramos los atributos de un objeto
+def ShowAtributesOfAnObject(object):
+    for key, pset in ifcopenshell.util.element.get_psets(object).items():
+    
+        print("         --- "+key + " --- ")
+        print()
+        for keypset, value in pset.items():
+            print("  "+keypset)
+            print("    * " + str(value) )
+    print()

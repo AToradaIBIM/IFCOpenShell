@@ -1,41 +1,54 @@
 #Clase para hacer pruebas ¡NO ESTÁN TODOS LOS MÉTODOS USADOS AQUÍ!
 
-import Controlador as cont
+from IFCDataLib import Controller
 
+cont = Controller('IFCOpenShell\Proyecto1_Normal.ifc')
 #Cargamos el archivo
-cont.loadFile('IFCOpenShell\Proyecto1_Normal.ifc')
+#cont.loadFile('IFCOpenShell\Proyecto1_Normal.ifc')
 
 #Mostramos los sitios, construcciones y pisos
 print()
 print("Muestra la estructura")
-cont.showSites()
-cont.showBuildings()
-cont.showStoreys()
+cont.show_sites()
+cont.show_buildings()
+cont.show_storeys()
 
 #Mostramos cuantas puertas tiene nuestro piso (A mejorar el sistema de obtener los datos)
 print()
 print("Muestra cuantas puertas tiene uno de nuestros pisos")
-print(cont.HowMuchOfAnObjectHasOtherObject("IfcDoor",cont.Storeys()[0][1]))
+print(cont.how_much_of_an_object_has_other_object("IfcDoor",cont.storeys()[0][1]))
 
 #Mostramos en que piso está contenida nuestra puerta
 print()
 print("Muestra la en qué piso está la puerta")
-cont.WhereIsCotainedMyObject(cont.GetListBuildingElementsByType("IfcDoor")[0])
+cont.where_is_contained_my_object(cont.get_list_building_elements_by_type("IfcDoor")[0])
 
 #Mostramos el cálculo de la superficie de nuestros muros
 print()
 print("Muestra la superficie de TODOS los muros")
-print(cont.CalculateSurfaceOfAllWalls())
+print(cont.calculate_surface_of_all_walls())
 
 #Mostramos el programa que ha exportado el proyecto
 print()
 print("Muestra de qué programa viene el proyecto")
-cont.showProgram()
+cont.show_program()
 
 #Mostramos la versión con la que se ha exportado
 print()
 print("Muestra la versión de IFC usada")
-cont.showVersionIFC()
+cont.show_version_ifc()
+
+print()
+print("Muestra las caras del muro")
+print()
+contador = 1
+print(cont.get_list_building_elements_by_type("IfcWall")[0])
+for caras in cont.get_all_faces(cont.get_list_building_elements_by_type("IfcWall")[0]):
+    print("Cara " + str(contador))
+    for points in caras:
+        print(points)
+    contador +=1
+    print()
 
 #Comentado porque es muy largo en la consola
 #Mostramos los atributos de un objeto

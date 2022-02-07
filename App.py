@@ -43,12 +43,16 @@ print("Muestra las caras del muro")
 print()
 contador = 1
 print(cont.get_list_building_elements_by_type("IfcWall")[0])
-for caras in cont.get_all_faces(cont.get_list_building_elements_by_type("IfcWall")[0]):
+for caras in cont.get_all_faces_of_an_object(cont.get_list_building_elements_by_type("IfcWall")[0]):
     print("Cara " + str(contador))
     for points in caras:
         print(points)
     contador +=1
     print()
+
+#Obtengo la altura de un muro
+print("Altura de un muro")
+print(cont.get_height_of_an_object(cont.get_list_building_elements_by_type("IfcWall")[0]))
 
 #Comentado porque es muy largo en la consola
 #Mostramos los atributos de un objeto

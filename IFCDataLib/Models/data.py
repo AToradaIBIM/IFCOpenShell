@@ -118,7 +118,7 @@ class Data:
                 print("    * " + str(value) )
         print()
     
-    def get_all_faces(self, object):
+    def get_all_faces_of_an_object(self, object):
         #Obtengo los datos de los vértices y las caras con referencias a sus vértices
 
         verts = self.get_the_verts_of_an_object(object) # x y z
@@ -147,18 +147,9 @@ class Data:
             #Saca el plano
             plane = Plane(point_vert1, point_vert2, point_vert3)
                 
-            #Estas dos cosas son lo mismo
-            #Saca el Tensor (Mirar apunte de que es un Tensor) (Vector)
-            #Que en verdad es una normal porque lo hace con cálculos 2D (Lo dice mi profe)
-            """normals.append({face : basisMatrix}); """
-            print("Movida")
-            print(point_vert1)
+            #Saca el Tensor (Vector)
+            
             newTensor = plane.T.array
-            print("plano")
-            print(plane)
-            print("newTensor")
-            print(newTensor)
-            print(type(newTensor[3]))
             flag = False;
             for face in grouped_faces:
                 if(np.allclose(face[0], newTensor)):
@@ -169,7 +160,18 @@ class Data:
             if(not flag):
                 grouped_faces.append([newTensor, points])
         
-        #for face in grouped_faces:
-           # polys = face.polygons
-           # area = face.totalArea
         return grouped_faces
+    
+    def get_height_of_an_object(self, object):
+        verts = self.get_the_verts_of_an_object(object)
+        vertsZ = []
+        for vert in verts:
+            vertsZ.append(vert[2])
+        
+        vertsZ.sort()
+        maxZ = vertsZ[-1]
+        minZ = vertsZ[0]
+        print(vertsZ)
+        print(maxZ)
+        print(minZ)
+        return maxZ-minZ

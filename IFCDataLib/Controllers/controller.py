@@ -74,5 +74,8 @@ class Controller:
     def show_atributes_of_an_object(self, object):
         self.data.show_atributes_of_an_object(object)
     
-    def get_all_faces(self, object):
-        return self.data.get_all_faces(object)
+    def get_all_faces_of_an_object(self, object):
+        return self.data.get_all_faces_of_an_object(object)
+    
+    def get_height_of_an_object(self, object):
+        return self.data.get_height_of_an_object(object)
